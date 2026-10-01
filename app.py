@@ -1,7 +1,10 @@
 import os
 import tempfile
-
 import streamlit as st
+
+# Inject Streamlit Cloud Secrets into environment if present
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 @st.cache_resource(show_spinner="⚡ Initializing AI Agent Engine & Vector Store...")
 def get_shopping_agent():
